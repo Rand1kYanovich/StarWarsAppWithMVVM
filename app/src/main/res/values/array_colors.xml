@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<resources>
+
+    <string-array name="card_color">
+        <item>#21BDDB</item>
+        <item>#F5606C</item>
+        <item>#F1B35B</item>
+        <item>#7476C8</item>
+        <item>#7C7F9F</item>
+
+
+    </string-array>
+
+</resources>

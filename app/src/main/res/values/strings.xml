@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">StartWarsApp</string>
+    <string name="bundle_argument_name">fullInfo</string>
+    <string name="imageButtonDescription">add Favorite Cards</string>
+    <string name="etSearch_hint">Введите название</string>
+    <string name="search_button_description">Search button</string>
+    <string name="item_starwars_title">starwars</string>
+    <string name="item_favorite_title">title</string>
+    <string name="actionbar_title">STARWARS</string>
+    <string name="tvName">Name: </string>
+    <string name="tvHeigh">Height: </string>
+    <string name="tvWeight">Weight: </string>
+    <string name="tvHairColor">Hair color: </string>
+    <string name="tvSkinColor">Skin color: </string>
+    <string name="tvEyeColor">Eye color: </string>
+    <string name="tvBirthday">Birthday: </string>
+    <string name="tvGender">Gender: </string>
+</resources>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:background="@color/backgroundColor">
+    <android.support.constraint.ConstraintLayout
+            android:id="@+id/clCard"
+            android:layout_width="300dp"
+            android:layout_height="500dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+                android:id="@+id/tvName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Name: Luck Skywalker"
+                android:layout_marginTop="80dp"
+                android:textColor="@color/textColor"
+                android:textSize="24sp"
+                android:layout_marginStart="8dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"/>
+        <TextView
+                android:id="@+id/tvHairColor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Hair color: blond"
+                android:textSize="24sp"
+                android:layout_marginStart="8dp"
+                android:textColor="@color/textColor"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/tvName"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"/>
+        <TextView
+                android:id="@+id/tvBirthYear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Birthday: 19BBY"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:textColor="@color/textColor"
+                android:textSize="24sp"
+                app:layout_constraintTop_toBottomOf="@+id/tvHairColor" android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+
+        <TextView
+                android:id="@+id/tvEyeColor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Eye color: blue"
+                android:textSize="24sp"
+                android:layout_marginStart="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/textColor"
+                app:layout_constraintTop_toBottomOf="@+id/tvBirthYear" android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"/>
+        <TextView
+                android:id="@+id/tvSkinColor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Skin color fair"
+                android:textSize="24sp"
+                android:layout_marginStart="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/textColor"
+                app:layout_constraintTop_toBottomOf="@+id/tvEyeColor" android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+
+
+        <TextView
+                android:id="@+id/tvGender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Gender: male"
+                android:ellipsize="marquee"
+                android:layout_marginStart="8dp"
+                android:textColor="@color/textColor"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="8dp"
+                android:textSize="24sp"
+                app:layout_constraintTop_toBottomOf="@+id/tvSkinColor" android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+
+        <TextView
+                android:id="@+id/tvHeight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Height: 182"
+                android:textSize="24sp"
+                android:gravity="start"
+                android:textColor="@color/textColor"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/tvGender"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"/>
+        <TextView
+                android:id="@+id/tvMass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Weight: 77"
+                android:textSize="24sp"
+                android:layout_marginStart="8dp"
+                android:textColor="@color/textColor"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/tvHeight" android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+
+        <ImageButton
+                android:id="@+id/btnFavorite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_favorite_false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:contentDescription="@string/imageButtonDescription"/>
+    </android.support.constraint.ConstraintLayout>
+
+    </android.support.constraint.ConstraintLayout>
