@@ -30,7 +30,7 @@ class AllCardsFragment: Fragment() {
     lateinit var btnSearch: ImageButton
 
     private val viewModel:AllCardsViewModel by lazy {
-        ViewModelProviders.of(this).get(AllCardsViewModel::class.java)
+        ViewModelProviders.of(activity!!).get(AllCardsViewModel::class.java)
     }
 
 
@@ -54,8 +54,8 @@ class AllCardsFragment: Fragment() {
 
         val cardList = viewModel.getCardList()
 
-        cardList.observe(this,
-            Observer<ArrayList<FullInfoCard>> { t -> adapter.setList(t!!) })
+            cardList.observe(viewLifecycleOwner,
+                Observer<ArrayList<FullInfoCard>> { t -> adapter.setList(t!!) })
 
         val favoriteListener = viewModel.getFavoriteListener()
         adapter = DataAdapter(ArrayList(), activity!!.applicationContext)
