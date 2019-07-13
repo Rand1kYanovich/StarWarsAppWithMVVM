@@ -4,6 +4,7 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.Observer
 import com.example.starwarsappwithmvvm.App
+import com.example.starwarsappwithmvvm.model.api.OnDataReadyCallback
 import com.example.starwarsappwithmvvm.model.database.AppDatabase
 import com.example.starwarsappwithmvvm.model.database.FavoriteDao
 import com.example.starwarsappwithmvvm.model.entity.FullInfoCard
@@ -24,12 +25,13 @@ class DataBaseRepository {
     init { favoriteDao = App.getInstance().database.favoriteDao() }
 
 
-    fun getAllFavorites(){
+    fun getAllFavorites(onDataReadyCallback:OnDataReadyCallback){
         favoriteDao.getAll()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
-                var list = ArrayList(it)
+                val list = ArrayList(it)
                 favoriteList.postValue(list)
+                onDataReadyCallback.onDataReady(favoriteList.value!!)
             }
     }
 

@@ -16,6 +16,7 @@ import com.example.starwarsappwithmvvm.R
 import com.example.starwarsappwithmvvm.listeners.OnCardClickListener
 import com.example.starwarsappwithmvvm.model.entity.FullInfoCard
 import com.example.starwarsappwithmvvm.util.FragmentUtil
+import com.example.starwarsappwithmvvm.viewmodel.ApiViewModel
 import com.example.starwarsappwithmvvm.viewmodel.allCards.AllCardsViewModel
 import com.example.starwarsappwithmvvm.viewmodel.allCards.PaginationScrollListener
 
@@ -29,8 +30,8 @@ class AllCardsFragment: Fragment() {
     lateinit var etSearch: EditText
     lateinit var btnSearch: ImageButton
 
-    private val viewModel:AllCardsViewModel by lazy {
-        ViewModelProviders.of(activity!!).get(AllCardsViewModel::class.java)
+    private val viewModel:ApiViewModel by lazy {
+        ViewModelProviders.of(activity!!).get(ApiViewModel::class.java)
     }
 
 
@@ -52,7 +53,7 @@ class AllCardsFragment: Fragment() {
 
         recyclerView = viewModel.getScrollListener(recyclerView,layoutManager)
 
-        val cardList = viewModel.getCardList()
+        val cardList = viewModel.getFirstData()
 
             cardList.observe(viewLifecycleOwner,
                 Observer<ArrayList<FullInfoCard>> { t -> adapter.setList(t!!) })
@@ -65,7 +66,7 @@ class AllCardsFragment: Fragment() {
                 FragmentUtil.replaceWithBackStack(
                     activity!!.supportFragmentManager,
                     R.id.container,
-                    FullCardFragment.newInstance(getString(R.string.bundle_argument_name), cardsList.get(position))
+                    FullCardFragment.newInstance(getString(R.string.bundle_argument_name), cardsList[position])
                 )
 
             }

@@ -39,7 +39,7 @@ class ApiRepository{
     }
 
 
-    fun loadDataWithFilter(filter: String) {
+    fun loadDataWithFilter(filter: String,onDataReadyCallback:OnDataReadyCallback) {
         NetworkService.getInstance()
             .getJSONApi()
             .getCards("", filter)
@@ -50,6 +50,8 @@ class ApiRepository{
                     if (response.isSuccessful) {
                         val infoPageAndResult: ResponseResult = response.body()!!
                         addFilterList(ArrayList(infoPageAndResult.results))
+                        Log.e("RepoFilter",filter+"f")
+                        onDataReadyCallback.onDataReady(getListFilter().value!!)
 
                     }
                 }
@@ -62,7 +64,7 @@ class ApiRepository{
     }
 
     private fun addFilterList(list:ArrayList<FullInfoCard>){
-        filterList.value!!.addAll(list)
+        filterList.value = list
     }
 
     fun getListCards(): MutableLiveData<ArrayList<FullInfoCard>> = cardsList
