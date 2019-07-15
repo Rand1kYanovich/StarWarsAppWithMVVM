@@ -15,8 +15,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val allCardsFragment = AllCardsFragment()
-        FragmentUtil.replace(supportFragmentManager, R.id.container, allCardsFragment)
+        if (savedInstanceState == null) {
+            val allCardsFragment = AllCardsFragment()
+            FragmentUtil.replace(supportFragmentManager, R.id.container, allCardsFragment)
+        }
 
         val actionBar = supportActionBar
 

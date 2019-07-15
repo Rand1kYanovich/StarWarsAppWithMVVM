@@ -32,6 +32,17 @@ class AllCardsFragment : Fragment() {
         ViewModelProviders.of(activity!!).get(ApiViewModel::class.java)
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString("text",etSearch.text.toString())
+
+    }
+
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+        if(savedInstanceState!=null)etSearch.setText(savedInstanceState["text"].toString())
+    }
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
