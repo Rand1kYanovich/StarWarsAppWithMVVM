@@ -22,10 +22,9 @@ class DataAdapter constructor(private var cardsList: ArrayList<FullInfoCard>, pr
 
 
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int): DataViewHolder {
-        val layoutView: View = LayoutInflater.from(parent.context).inflate(R.layout.card_item, null, false)
-        val rcv = DataViewHolder(layoutView)
+        val layoutView: View = LayoutInflater.from(parent.context).inflate(R.layout.card_item, parent, false)
 
-        return rcv
+        return DataViewHolder(layoutView)
     }
 
 
