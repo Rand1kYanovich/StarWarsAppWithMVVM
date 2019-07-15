@@ -17,11 +17,9 @@ import com.example.starwarsappwithmvvm.listeners.OnCardClickListener
 import com.example.starwarsappwithmvvm.model.entity.FullInfoCard
 import com.example.starwarsappwithmvvm.util.FragmentUtil
 import com.example.starwarsappwithmvvm.viewmodel.ApiViewModel
-import com.example.starwarsappwithmvvm.viewmodel.allCards.AllCardsViewModel
-import com.example.starwarsappwithmvvm.viewmodel.allCards.PaginationScrollListener
 
 
-class AllCardsFragment: Fragment() {
+class AllCardsFragment : Fragment() {
 
     lateinit var recyclerView: RecyclerView
     lateinit var adapter: DataAdapter
@@ -30,38 +28,35 @@ class AllCardsFragment: Fragment() {
     lateinit var etSearch: EditText
     lateinit var btnSearch: ImageButton
 
-    private val viewModel:ApiViewModel by lazy {
+    private val viewModel: ApiViewModel by lazy {
         ViewModelProviders.of(activity!!).get(ApiViewModel::class.java)
     }
 
 
-
-
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-        val rootView:View  = inflater.inflate(R.layout.fragment_all_cards,container,false)
+        val rootView: View = inflater.inflate(R.layout.fragment_all_cards, container, false)
 
         etSearch = rootView.findViewById(R.id.etSearch)
         btnSearch = rootView.findViewById(R.id.btnSearch)
-        btnSearch = viewModel.addSearchListener(btnSearch,etSearch)
+        btnSearch = viewModel.addSearchListener(btnSearch, etSearch)
         colorArray = resources.getStringArray(R.array.card_color)
 
         recyclerView = rootView.findViewById(R.id.recyclerView)
         layoutManager = LinearLayoutManager(context)
         recyclerView.layoutManager = layoutManager
 
-        recyclerView = viewModel.getScrollListener(recyclerView,layoutManager)
+        recyclerView = viewModel.getScrollListener(recyclerView, layoutManager)
 
         val cardList = viewModel.getFirstData()
 
-            cardList.observe(viewLifecycleOwner,
-                Observer<ArrayList<FullInfoCard>> { t -> adapter.setList(t!!) })
+        cardList.observe(viewLifecycleOwner,
+            Observer<ArrayList<FullInfoCard>> { t -> adapter.setList(t!!) })
 
         val favoriteListener = viewModel.getFavoriteListener()
         adapter = DataAdapter(ArrayList(), activity!!.applicationContext)
         adapter.setColorArray(colorArray)
-        adapter.setClickListener(object:OnCardClickListener{
+        adapter.setClickListener(object : OnCardClickListener {
             override fun onCardClickListener(view: View, position: Int, cardsList: ArrayList<FullInfoCard>) {
                 FragmentUtil.replaceWithBackStack(
                     activity!!.supportFragmentManager,

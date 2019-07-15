@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val allCardsFragment = AllCardsFragment()
-        FragmentUtil.replace(supportFragmentManager,R.id.container,allCardsFragment)
+        FragmentUtil.replace(supportFragmentManager, R.id.container, allCardsFragment)
 
         val actionBar = supportActionBar
 
@@ -28,8 +28,6 @@ class MainActivity : AppCompatActivity() {
         actionBar.setDisplayShowHomeEnabled(true)
 
 
-
-
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -38,28 +36,26 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu,menu)
+        menuInflater.inflate(R.menu.menu, menu)
         return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?) = when(item!!.itemId) {
-        R.id.action_favorite-> {
-            FragmentUtil.replaceWithBackStack(supportFragmentManager,R.id.container,FavoriteCardsFragment.newInstance())
+    override fun onOptionsItemSelected(item: MenuItem?) = when (item!!.itemId) {
+        R.id.action_favorite -> {
+            FragmentUtil.replaceWithBackStack(
+                supportFragmentManager,
+                R.id.container,
+                FavoriteCardsFragment.newInstance()
+            )
             true
         }
 
-        else->{
+        else -> {
             super.onOptionsItemSelected(item)
         }
 
 
-
     }
-
-
-
-
-
 
 
 }

@@ -4,5 +4,5 @@ import android.widget.ImageButton
 import com.example.starwarsappwithmvvm.model.entity.FullInfoCard
 
 interface OnFavoriteClickListener {
-    fun onFavoriteClickListener(position:Int, btnFavorite: ImageButton)
+    fun onFavoriteClickListener(position: Int, btnFavorite: ImageButton, list: ArrayList<FullInfoCard>)
 }

@@ -13,9 +13,9 @@ import android.widget.ImageButton
 import android.widget.TextView
 import com.example.starwarsappwithmvvm.R
 import com.example.starwarsappwithmvvm.model.entity.FullInfoCard
-import com.example.starwarsappwithmvvm.viewmodel.ApiViewModel
+import com.example.starwarsappwithmvvm.viewmodel.DatabaseViewModel
 
-class FullCardFragment:Fragment() {
+class FullCardFragment : Fragment() {
 
     companion object {
 
@@ -28,8 +28,8 @@ class FullCardFragment:Fragment() {
         }
     }
 
-    private val viewModel: ApiViewModel by lazy {
-        ViewModelProviders.of(activity!!).get(ApiViewModel::class.java)
+    private val viewModel: DatabaseViewModel by lazy {
+        ViewModelProviders.of(activity!!).get(DatabaseViewModel::class.java)
     }
 
     var fullCardObject: FullInfoCard
@@ -45,8 +45,9 @@ class FullCardFragment:Fragment() {
     lateinit var tvGender: TextView
 
 
-
-    init { fullCardObject = FullInfoCard() }
+    init {
+        fullCardObject = FullInfoCard()
+    }
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -60,10 +61,15 @@ class FullCardFragment:Fragment() {
         btnFavorite = rootView.findViewById(R.id.btnFavorite)
         btnFavorite.setBackgroundColor(Color.parseColor(fullCardObject.color))
 
-        if(fullCardObject.isFavorite) btnFavorite.setImageDrawable(ContextCompat.getDrawable(context!!, R.drawable.ic_favorite_true))
+        if (fullCardObject.isFavorite) btnFavorite.setImageDrawable(
+            ContextCompat.getDrawable(
+                context!!,
+                R.drawable.ic_favorite_true
+            )
+        )
         else btnFavorite.setImageDrawable(ContextCompat.getDrawable(context!!, R.drawable.ic_favorite_false))
 
-        btnFavorite = viewModel.getClickListener(btnFavorite,fullCardObject)
+        btnFavorite = viewModel.getClickListener(btnFavorite, fullCardObject)
 
 
 

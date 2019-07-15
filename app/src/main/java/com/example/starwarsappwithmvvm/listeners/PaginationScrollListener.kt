@@ -1,4 +1,4 @@
-package com.example.starwarsappwithmvvm.viewmodel.allCards
+package com.example.starwarsappwithmvvm.listeners
 
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -14,7 +14,6 @@ abstract class PaginationScrollListener
         val visibleItemCount = layoutManager.childCount
         val totalItemCount = layoutManager.itemCount
         val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
-
 
         if (!isLoading()) {
             if (visibleItemCount + firstVisibleItemPosition >= totalItemCount && firstVisibleItemPosition >= 0) {

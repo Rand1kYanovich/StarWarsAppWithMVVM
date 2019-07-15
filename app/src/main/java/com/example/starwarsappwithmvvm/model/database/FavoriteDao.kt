@@ -1,9 +1,7 @@
 package com.example.starwarsappwithmvvm.model.database
 
-import android.arch.lifecycle.LiveData
 import android.arch.persistence.room.*
 import com.example.starwarsappwithmvvm.model.entity.FullInfoCard
-
 import io.reactivex.Flowable
 import io.reactivex.Maybe
 

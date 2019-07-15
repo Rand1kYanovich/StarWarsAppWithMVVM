@@ -10,15 +10,21 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ApiRepository{
+class ApiRepository {
 
 
-    var cardsList:MutableLiveData<ArrayList<FullInfoCard>> =MutableLiveData()
+    var cardsList: MutableLiveData<ArrayList<FullInfoCard>> = MutableLiveData()
     var list = ArrayList<FullInfoCard>()
-    var filterList:MutableLiveData<ArrayList<FullInfoCard>> =MutableLiveData()
+    var filterList: MutableLiveData<ArrayList<FullInfoCard>> = MutableLiveData()
+
+    companion object {
+        fun newInstance(): ApiRepository {
+            return ApiRepository()
+        }
+    }
 
 
-    fun loadData(page:Int,onDataReadyCallback:OnDataReadyCallback) {
+    fun loadData(page: Int, onDataReadyCallback: OnDataReadyCallback) {
         NetworkService.getInstance()
             .getJSONApi()
             .getCards(page.toString(), "")
@@ -28,10 +34,8 @@ class ApiRepository{
                 override fun onResponse(call: Call<ResponseResult>, response: Response<ResponseResult>) {
                     if (response.isSuccessful) {
                         val infoPageAndResult: ResponseResult = response.body()!!
-                            addCard(ArrayList(infoPageAndResult.results))
-
-                            Log.e("RepoPage",page.toString())
-                            onDataReadyCallback.onDataReady(getListCards().value!!)
+                        addCard(ArrayList(infoPageAndResult.results))
+                        onDataReadyCallback.onDataReady(getListCards().value!!)
 
                     }
                 }
@@ -39,7 +43,7 @@ class ApiRepository{
     }
 
 
-    fun loadDataWithFilter(filter: String,onDataReadyCallback:OnDataReadyCallback) {
+    fun loadDataWithFilter(filter: String, onDataReadyCallback: OnDataReadyCallback) {
         NetworkService.getInstance()
             .getJSONApi()
             .getCards("", filter)
@@ -50,7 +54,6 @@ class ApiRepository{
                     if (response.isSuccessful) {
                         val infoPageAndResult: ResponseResult = response.body()!!
                         addFilterList(ArrayList(infoPageAndResult.results))
-                        Log.e("RepoFilter",filter+"f")
                         onDataReadyCallback.onDataReady(getListFilter().value!!)
 
                     }
@@ -58,21 +61,17 @@ class ApiRepository{
             })
     }
 
-    private fun addCard(list:ArrayList<FullInfoCard>){
+    private fun addCard(list: ArrayList<FullInfoCard>) {
         this.list.addAll(list)
         cardsList.value = this.list
     }
 
-    private fun addFilterList(list:ArrayList<FullInfoCard>){
+    private fun addFilterList(list: ArrayList<FullInfoCard>) {
         filterList.value = list
     }
 
     fun getListCards(): MutableLiveData<ArrayList<FullInfoCard>> = cardsList
     fun getListFilter(): MutableLiveData<ArrayList<FullInfoCard>> = filterList
 
-    companion object {
-        fun newInstace(): ApiRepository {
-            return ApiRepository()
-        }
-    }
+
 }
