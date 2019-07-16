@@ -11,16 +11,9 @@ import com.example.starwarsappwithmvvm.model.entity.FullInfoCard
 
 class DataViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    var tvName: TextView? = null
-    var clCard: ConstraintLayout? = null
-    var btnFavorite: ImageButton? = null
-
-    init {
-        clCard = itemView.findViewById(R.id.clCard)
-        tvName = itemView.findViewById(R.id.tvName)
-        btnFavorite = itemView.findViewById(R.id.btnFavorite)
-
-    }
+    var tvName: TextView = itemView.findViewById(R.id.tvName)
+    var clCard: ConstraintLayout = itemView.findViewById(R.id.clCard)
+    var btnFavorite: ImageButton = itemView.findViewById(R.id.btnFavorite)
 
     fun bind(
         position: Int,
@@ -30,7 +23,7 @@ class DataViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         btnFavorite: ImageButton
     ) {
         itemView.setOnClickListener { v -> clickListener.onCardClickListener(v!!, position, cardsList) }
-        this.btnFavorite!!.setOnClickListener {
+        this.btnFavorite.setOnClickListener {
             favoriteClickListener.onFavoriteClickListener(position, btnFavorite,cardsList)
         }
     }

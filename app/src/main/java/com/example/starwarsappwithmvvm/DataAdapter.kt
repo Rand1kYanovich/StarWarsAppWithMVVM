@@ -29,28 +29,28 @@ class DataAdapter constructor(private var cardsList: ArrayList<FullInfoCard>, pr
 
 
     override fun onBindViewHolder(holder: DataViewHolder, position: Int) {
-        val item: FullInfoCard = cardsList.get(position)
-        holder.tvName!!.setText(item.name)
+        val item: FullInfoCard = cardsList[position]
+        holder.tvName.text = item.name
 
         if (item.color.isEmpty()) {
             if (colorPosition >= colorArray.size) colorPosition = 0
-            holder.clCard!!.setBackgroundColor(Color.parseColor(colorArray[colorPosition]))
+            holder.clCard.setBackgroundColor(Color.parseColor(colorArray[colorPosition]))
             item.color = colorArray[colorPosition]
-            holder.btnFavorite!!.setBackgroundColor(Color.parseColor(colorArray[colorPosition]))
+            holder.btnFavorite.setBackgroundColor(Color.parseColor(colorArray[colorPosition]))
             colorPosition++
         } else {
-            holder.clCard!!.setBackgroundColor(Color.parseColor(item.color))
-            holder.btnFavorite!!.setBackgroundColor(Color.parseColor(item.color))
+            holder.clCard.setBackgroundColor(Color.parseColor(item.color))
+            holder.btnFavorite.setBackgroundColor(Color.parseColor(item.color))
         }
 
-        if (item.isFavorite) holder.btnFavorite!!.setImageDrawable(
+        if (item.isFavorite) holder.btnFavorite.setImageDrawable(
             ContextCompat.getDrawable(
                 context,
                 R.drawable.ic_favorite_true
             )
         )
-        else holder.btnFavorite!!.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_favorite_false))
-        holder.bind(position, listener, cardsList, favoriteListener, holder.btnFavorite!!)
+        else holder.btnFavorite.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_favorite_false))
+        holder.bind(position, listener, cardsList, favoriteListener, holder.btnFavorite)
     }
 
     override fun getItemCount(): Int {

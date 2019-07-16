@@ -7,6 +7,7 @@ import android.support.constraint.ConstraintLayout
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
@@ -74,29 +75,36 @@ class FullCardFragment : Fragment() {
 
 
         tvName = rootView.findViewById(R.id.tvName)
-        tvName.text = getString(R.string.tvName).plus(fullCardObject.name)
+        tvName.text = String.format(getString(R.string.tvName),fullCardObject.name)
 
         tvHeight = rootView.findViewById(R.id.tvHeight)
-        tvHeight.text = getString(R.string.tvHeigh).plus(fullCardObject.height)
+        tvHeight.text = String.format(getString(R.string.tvHeigh),fullCardObject.height)
 
         tvMass = rootView.findViewById(R.id.tvMass)
-        tvMass.text = getString(R.string.tvWeight).plus(fullCardObject.mass)
+        tvMass.text = String.format(getString(R.string.tvWeight),fullCardObject.mass)
 
         tvHairColor = rootView.findViewById(R.id.tvHairColor)
-        tvHairColor.text = getString(R.string.tvHairColor).plus(fullCardObject.hairColor)
+        tvHairColor.text = String.format(getString(R.string.tvHairColor),fullCardObject.hairColor)
 
         tvSkinColor = rootView.findViewById(R.id.tvSkinColor)
-        tvSkinColor.text = getString(R.string.tvSkinColor).plus(fullCardObject.skinColor)
+        tvSkinColor.text = String.format(getString(R.string.tvSkinColor),fullCardObject.skinColor)
 
         tvEyeColor = rootView.findViewById(R.id.tvEyeColor)
-        tvEyeColor.text = getString(R.string.tvEyeColor).plus(fullCardObject.eyeColor)
+        tvEyeColor.text = String.format(getString(R.string.tvEyeColor),fullCardObject.eyeColor)
 
         tvBirthYear = rootView.findViewById(R.id.tvBirthYear)
-        tvBirthYear.text = getString(R.string.tvBirthday).plus(fullCardObject.birthYear)
+        tvBirthYear.text = String.format(getString(R.string.tvBirthday),fullCardObject.birthYear)
 
         tvGender = rootView.findViewById(R.id.tvGender)
-        tvGender.text = getString(R.string.tvGender).plus(fullCardObject.gender)
+        tvGender.text = String.format(getString(R.string.tvGender),fullCardObject.gender)
 
         return rootView
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu?) {
+        super.onPrepareOptionsMenu(menu)
+        val item = menu!!.findItem(R.id.action_favorite)
+        item.isVisible = false
+
     }
 }

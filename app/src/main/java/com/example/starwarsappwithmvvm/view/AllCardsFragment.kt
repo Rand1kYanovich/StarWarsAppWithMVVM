@@ -34,13 +34,13 @@ class AllCardsFragment : Fragment() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putString("text",etSearch.text.toString())
+        outState.putString("text", etSearch.text.toString())
 
     }
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
         super.onViewStateRestored(savedInstanceState)
-        if(savedInstanceState!=null)etSearch.setText(savedInstanceState["text"].toString())
+        if (savedInstanceState != null) etSearch.setText(savedInstanceState["text"].toString())
     }
 
 

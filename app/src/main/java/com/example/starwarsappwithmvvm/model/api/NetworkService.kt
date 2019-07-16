@@ -10,7 +10,7 @@ class NetworkService {
 
     companion object {
         private var mInstance: NetworkService? = null
-        private val BASE_URL: String = "https://swapi.co/api/"
+        private const val BASE_URL: String = "https://swapi.co/api/"
 
         fun getInstance(): NetworkService {
             if (mInstance == null) mInstance = NetworkService()
@@ -20,10 +20,9 @@ class NetworkService {
         fun getOkHttpClient(): OkHttpClient {
             val logging = HttpLoggingInterceptor()
             logging.level = HttpLoggingInterceptor.Level.NONE
-            val okClient: OkHttpClient = OkHttpClient.Builder()
+            return OkHttpClient.Builder()
                 .addInterceptor(logging)
                 .build()
-            return okClient
         }
 
 
