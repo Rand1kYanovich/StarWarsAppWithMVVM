@@ -15,6 +15,7 @@ import com.example.starwarsappwithmvvm.R
 import com.example.starwarsappwithmvvm.listeners.OnCardClickListener
 import com.example.starwarsappwithmvvm.model.entity.FullInfoCard
 import com.example.starwarsappwithmvvm.util.FragmentUtil
+import com.example.starwarsappwithmvvm.util.ListUtil
 import com.example.starwarsappwithmvvm.viewmodel.ApiViewModel
 import com.example.starwarsappwithmvvm.viewmodel.DatabaseViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -49,6 +50,7 @@ class FavoriteCardsFragment : Fragment() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe { t ->
                 adapter.setList(ArrayList(t))
+                viewModelApi.cardsList.value =  ListUtil.equalsObjects(viewModelApi.cardsList.value!!,ArrayList(t))
             }
 
         recyclerView = rootView.findViewById(R.id.recyclerView)

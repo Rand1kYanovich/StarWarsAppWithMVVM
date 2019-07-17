@@ -1,5 +1,6 @@
 package com.example.starwarsappwithmvvm
 
+import android.content.Context
 import android.support.constraint.ConstraintLayout
 import android.support.v7.widget.RecyclerView
 import android.view.View
@@ -20,11 +21,12 @@ class DataViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         clickListener: OnCardClickListener,
         cardsList: ArrayList<FullInfoCard>,
         favoriteClickListener: OnFavoriteClickListener,
-        btnFavorite: ImageButton
+        btnFavorite: ImageButton,
+        context:Context
     ) {
         itemView.setOnClickListener { v -> clickListener.onCardClickListener(v!!, position, cardsList) }
         this.btnFavorite.setOnClickListener {
-            favoriteClickListener.onFavoriteClickListener(position, btnFavorite,cardsList)
+            favoriteClickListener.onFavoriteClickListener(position, btnFavorite,cardsList,context)
         }
     }
 

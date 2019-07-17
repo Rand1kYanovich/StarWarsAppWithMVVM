@@ -50,7 +50,7 @@ class DataAdapter constructor(private var cardsList: ArrayList<FullInfoCard>, pr
             )
         )
         else holder.btnFavorite.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_favorite_false))
-        holder.bind(position, listener, cardsList, favoriteListener, holder.btnFavorite)
+        holder.bind(position, listener, cardsList, favoriteListener, holder.btnFavorite,context)
     }
 
     override fun getItemCount(): Int {

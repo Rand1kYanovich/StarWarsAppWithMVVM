@@ -3,10 +3,13 @@ package com.example.starwarsappwithmvvm.viewmodel
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
+import android.content.Context
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.widget.EditText
 import android.widget.ImageButton
+import com.example.starwarsappwithmvvm.R
 import com.example.starwarsappwithmvvm.listeners.OnFavoriteClickListener
 import com.example.starwarsappwithmvvm.listeners.PaginationScrollListener
 import com.example.starwarsappwithmvvm.model.api.OnDataReadyCallback
@@ -18,7 +21,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableMaybeObserver
 import io.reactivex.schedulers.Schedulers
 
-class ApiViewModel : ViewModel() {
+class ApiViewModel() : ViewModel() {
 
 
     var listCard = ArrayList<FullInfoCard>()
@@ -49,10 +52,15 @@ class ApiViewModel : ViewModel() {
             override fun onFavoriteClickListener(
                 position: Int,
                 btnFavorite: ImageButton,
-                list:ArrayList<FullInfoCard>
+                list: ArrayList<FullInfoCard>,
+                context:Context
             ) {
 
-
+                if (list[position].isFavorite) {
+                    btnFavorite.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_favorite_false))
+                } else {
+                    btnFavorite.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_favorite_true))
+                }
                 DataBaseRepository.newInstance().favoriteDao.getById(list[position].name)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())

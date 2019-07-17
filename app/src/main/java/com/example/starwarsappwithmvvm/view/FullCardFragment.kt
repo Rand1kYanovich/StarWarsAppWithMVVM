@@ -18,16 +18,6 @@ import com.example.starwarsappwithmvvm.viewmodel.DatabaseViewModel
 
 class FullCardFragment : Fragment() {
 
-    companion object {
-
-        fun newInstance(key: String, card: FullInfoCard): FullCardFragment {
-            val fullCardFragment = FullCardFragment()
-            val bundle = Bundle()
-            bundle.putSerializable(key, card)
-            fullCardFragment.arguments = bundle
-            return fullCardFragment
-        }
-    }
 
     private val viewModel: DatabaseViewModel by lazy {
         ViewModelProviders.of(activity!!).get(DatabaseViewModel::class.java)
@@ -46,6 +36,17 @@ class FullCardFragment : Fragment() {
     lateinit var tvGender: TextView
 
 
+    companion object {
+
+        fun newInstance(key: String, card: FullInfoCard): FullCardFragment {
+            val fullCardFragment = FullCardFragment()
+            val bundle = Bundle()
+            bundle.putSerializable(key, card)
+            fullCardFragment.arguments = bundle
+            return fullCardFragment
+        }
+    }
+
     init {
         fullCardObject = FullInfoCard()
     }
@@ -53,7 +54,7 @@ class FullCardFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView: View = inflater.inflate(R.layout.fragment_full_card, container, false)
-
+        setHasOptionsMenu(true)
         fullCardObject = arguments!!.getSerializable(getString(R.string.bundle_argument_name)) as FullInfoCard
 
         clCard = rootView.findViewById(R.id.clCard)
@@ -70,41 +71,44 @@ class FullCardFragment : Fragment() {
         )
         else btnFavorite.setImageDrawable(ContextCompat.getDrawable(context!!, R.drawable.ic_favorite_false))
 
-        btnFavorite = viewModel.getClickListener(btnFavorite, fullCardObject)
+        btnFavorite = viewModel.getClickListener(btnFavorite, fullCardObject,context!!)
 
 
 
         tvName = rootView.findViewById(R.id.tvName)
-        tvName.text = String.format(getString(R.string.tvName),fullCardObject.name)
+        tvName.text = String.format(getString(R.string.tvName), fullCardObject.name)
 
         tvHeight = rootView.findViewById(R.id.tvHeight)
-        tvHeight.text = String.format(getString(R.string.tvHeigh),fullCardObject.height)
+        tvHeight.text = String.format(getString(R.string.tvHeigh), fullCardObject.height)
 
         tvMass = rootView.findViewById(R.id.tvMass)
-        tvMass.text = String.format(getString(R.string.tvWeight),fullCardObject.mass)
+        tvMass.text = String.format(getString(R.string.tvWeight), fullCardObject.mass)
 
         tvHairColor = rootView.findViewById(R.id.tvHairColor)
-        tvHairColor.text = String.format(getString(R.string.tvHairColor),fullCardObject.hairColor)
+        tvHairColor.text = String.format(getString(R.string.tvHairColor), fullCardObject.hairColor)
 
         tvSkinColor = rootView.findViewById(R.id.tvSkinColor)
-        tvSkinColor.text = String.format(getString(R.string.tvSkinColor),fullCardObject.skinColor)
+        tvSkinColor.text = String.format(getString(R.string.tvSkinColor), fullCardObject.skinColor)
 
         tvEyeColor = rootView.findViewById(R.id.tvEyeColor)
-        tvEyeColor.text = String.format(getString(R.string.tvEyeColor),fullCardObject.eyeColor)
+        tvEyeColor.text = String.format(getString(R.string.tvEyeColor), fullCardObject.eyeColor)
 
         tvBirthYear = rootView.findViewById(R.id.tvBirthYear)
-        tvBirthYear.text = String.format(getString(R.string.tvBirthday),fullCardObject.birthYear)
+        tvBirthYear.text = String.format(getString(R.string.tvBirthday), fullCardObject.birthYear)
 
         tvGender = rootView.findViewById(R.id.tvGender)
-        tvGender.text = String.format(getString(R.string.tvGender),fullCardObject.gender)
+        tvGender.text = String.format(getString(R.string.tvGender), fullCardObject.gender)
 
         return rootView
     }
 
     override fun onPrepareOptionsMenu(menu: Menu?) {
         super.onPrepareOptionsMenu(menu)
+
         val item = menu!!.findItem(R.id.action_favorite)
         item.isVisible = false
 
     }
+
+
 }

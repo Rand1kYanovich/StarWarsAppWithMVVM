@@ -1,7 +1,10 @@
 package com.example.starwarsappwithmvvm.viewmodel
 
 import android.arch.lifecycle.ViewModel
+import android.content.Context
+import android.support.v4.content.ContextCompat
 import android.widget.ImageButton
+import com.example.starwarsappwithmvvm.R
 import com.example.starwarsappwithmvvm.model.database.FavoriteDao
 import com.example.starwarsappwithmvvm.model.entity.FullInfoCard
 import com.example.starwarsappwithmvvm.model.repository.DataBaseRepository
@@ -13,8 +16,13 @@ import io.reactivex.schedulers.Schedulers
 class DatabaseViewModel : ViewModel() {
 
 
-    fun getClickListener(btnFavorite: ImageButton, fullCardObject: FullInfoCard): ImageButton {
+    fun getClickListener(btnFavorite: ImageButton, fullCardObject: FullInfoCard, context: Context): ImageButton {
         btnFavorite.setOnClickListener {
+            if (fullCardObject.isFavorite) {
+                btnFavorite.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_favorite_false))
+            } else {
+                btnFavorite.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_favorite_true))
+            }
             DataBaseRepository.newInstance()
                 .getDao()
                 .getById(fullCardObject.name)

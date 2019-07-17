@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        actionBar!!.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM)
+        actionBar!!.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM
         actionBar.setCustomView(R.layout.actionbar)
         actionBar.setDisplayHomeAsUpEnabled(true)
         actionBar.setDisplayShowHomeEnabled(true)
